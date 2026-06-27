@@ -46,18 +46,11 @@ function loadFunctions() {
         const col = document.createElement('div');
         col.className = 'col';
         col.innerHTML = `
-            <div class="card border-0 shadow-sm rounded-4 h-100 hover-shadow cursor-pointer" onclick="openFunctionDetail('${func.name}')">
-                <div class="card-body p-4 d-flex flex-column gap-3">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <span class="badge bg-${color}-subtle text-${color} px-3 py-2 rounded-pill">${func.tests.length} Asertiones</span>
-                        <div class="text-muted"><i data-lucide="chevron-right"></i></div>
-                    </div>
-                    <h3 class="card-title h5 fw-bold text-dark mt-2">${func.title}</h3>
-                    <p class="card-text text-secondary small mb-0">${func.description}</p>
-                    <div class="mt-auto pt-3 border-top border-light font-mono text-muted small">
-                        def ${func.name}()
-                    </div>
-                </div>
+            <div class="fn-card hover-shadow cursor-pointer" onclick="openFunctionDetail('${func.name}')">
+                <span class="fn-badge badge bg-${color}-subtle text-${color}">${func.tests.length} Asertiones</span>
+                <h3 class="fn-title card-title">${func.title}</h3>
+                <p class="fn-desc card-text">${func.description}</p>
+                <div class="fn-mono">def ${func.name}()</div>
             </div>
         `;
         list.appendChild(col);
