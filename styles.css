@@ -3,6 +3,24 @@ body {
     background-color: #f8fafc;
     font-family: 'Outfit', sans-serif;
     color: #1e293b;
+    font-size: 1.08rem; /* Aumentamos el tamaño base del texto general */
+}
+
+/* Aumentar textos pequeños de Bootstrap para mejorar su legibilidad */
+.small, small {
+    font-size: 0.885rem !important; /* Más legible */
+}
+
+.fs-7 {
+    font-size: 0.88rem !important;
+}
+.fs-8 {
+    font-size: 0.8rem !important;
+}
+
+/* Las tarjetas estadísticas */
+.card-body span.fs-4 {
+    font-size: 1.7rem !important;
 }
 
 /* Efecto hover suave para tarjetas interactivas */
@@ -31,11 +49,11 @@ body {
 }
 .code-container code {
     font-family: 'JetBrains Mono', monospace !important;
-    font-size: 0.85rem !important;
+    font-size: 0.85rem !important; /* Mantiene el tamaño original para código */
     line-height: 1.5 !important;
-    white-space: pre-wrap !important; /* Ajuste automático de línea */
+    white-space: pre-wrap !important;
     word-wrap: break-word !important;
-    word-break: break-word !important; /* Asegura ruptura a nivel de palabra */
+    word-break: break-word !important;
 }
 
 /* Animaciones de cambio de pantalla */
