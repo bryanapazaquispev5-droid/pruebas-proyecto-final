@@ -145,7 +145,7 @@ function renderTestList() {
         }
         
         item.innerHTML = `
-            <div class="test-header p-3 d-flex align-items-center justify-content-between" onclick="openTestModal(${test.num})">
+            <div class="test-header p-3 d-flex align-items-center justify-content-between" onclick="openTestModal(${test.num}, 'unit')">
                 <div class="test-header-info d-flex align-items-center gap-3" style="max-width: 70%;">
                     <div class="test-num shadow-sm rounded-circle d-flex align-items-center justify-content-center text-white fw-bold flex-shrink-0" style="width: 32px; height: 32px; font-size: 0.95rem; background-color: ${test.test_type === 'valid' ? '#10b981' : (test.test_type === 'invalid' ? '#f43f5e' : '#06b6d4')};">${test.num}</div>
                     <div class="text-truncate">
@@ -181,7 +181,7 @@ function loadSystemTests() {
         item.id = `test-case-${test.num}`;
         
         item.innerHTML = `
-            <div class="test-header p-3 d-flex align-items-center justify-content-between" onclick="openTestModal(${test.num})">
+            <div class="test-header p-3 d-flex align-items-center justify-content-between" onclick="openTestModal(${test.num}, 'system')">
                 <div class="test-header-info d-flex align-items-center gap-3" style="max-width: 75%;">
                     <div class="test-num shadow-sm rounded-circle d-flex align-items-center justify-content-center text-white fw-bold flex-shrink-0" style="width: 36px; height: 36px; font-size: 1rem; background-color: #1e293b;">${test.num}</div>
                     <div class="text-truncate">
@@ -207,16 +207,24 @@ let lastTestScreen = 'screen-detail';
 let currentTestNum = 0;
 
 // ABRIR PANTALLA COMPLETA DE DETALLE
-function openTestModal(testNum) {
+function openTestModal(testNum, testType) {
     let test = null;
     
-    // Buscar en unitarios o sistema
-    if (currentFunc && currentFunc.name !== 'system_test_suite') {
-        test = currentFunc.tests.find(t => t.num === testNum);
-    }
-    
-    if (!test) {
+    // Buscar específicamente en unitarios o sistema
+    if (testType === 'system') {
         test = appData['system_test_suite'].tests.find(t => t.num === testNum);
+    } else if (testType === 'unit') {
+        if (currentFunc) {
+            test = currentFunc.tests.find(t => t.num === testNum);
+        }
+    } else {
+        // Fallback
+        if (currentFunc && currentFunc.name !== 'system_test_suite') {
+            test = currentFunc.tests.find(t => t.num === testNum);
+        }
+        if (!test) {
+            test = appData['system_test_suite'].tests.find(t => t.num === testNum);
+        }
     }
     
     if (!test) return;
