@@ -62,6 +62,7 @@ function loadFunctions() {
 
 // ABRIR DETALLE DE UNA FUNCIÓN
 function openFunctionDetail(funcName) {
+    activeFilter = 'all';
     currentFunc = appData[funcName];
     document.getElementById('detail-title').innerText = currentFunc.title;
     document.getElementById('detail-desc').innerText = currentFunc.description;
